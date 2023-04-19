@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{%extends "base.html"%}
+{% load static %}
+
+
+{%block content%}
+{%include "nav.html"%}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">My Ordered Products</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Sl No</th>
+                                            <th>Order Id</th>
+                                            <th>Payment Id</th>
+                                            <th>Product</th>
+                                            <th>Paid Amount</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                           
+
+                                        </tr>
+                                    </thead>
+                                
+                                    <tbody>
+                                        {%for order in orders%}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{order.orderid}}</td>
+                                            <td>{{order.paymentid}}</td>
+                                            <td>{{order.productname}}</td>
+                                            <td>{{order.price}}</td>
+                                            <td>{{order.status}}</td>
+
+                                            <td>{{order.created_at}}</td>
+                                        </tr>
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                 
+                </div>
+                <!-- /.container-fluid -->
+
+    {%include "footer.html"%}        
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == "error"%}
+    <script>
+      $(document).ready(function(){
+       // swal('{{message}}');
+    
+        swal({
+        title:'{{message}}',
+        //text: "You clicked the button!",
+        icon:"warning",
+        button:"ok"
+    });
+      });
+    </script>
+    {%else%}
+    <script>
+      $(document).ready(function(){
+       // swal('{{message}}');
+    
+        swal({
+        title:'{{message}}',
+        //text: "You clicked the button!",
+        icon:"success",
+        button:"ok"
+    });
+      });
+    </script>
+    {% endif %}
+    {%endfor%}
+    {% endif %} 
+{%endblock%}

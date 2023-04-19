@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+{%extends "base.html"%}
+{% load static %}
+
+
+{%block content%}
+{%include "nav.html"%}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                <div class="d-flex justify-content-around" >
+                    {%if id%}
+                    <div class="text-xl font-weight-bold text-primary text-uppercase mb-1">
+                        Fertilizer Aggregators</div>
+                        <div>
+                            {%else%}
+                            <div class="text-xl font-weight-bold text-primary text-uppercase mb-1">
+                                Farmers Fertilizers</div>
+                                <div>
+                            
+                            {%endif%}
+                            
+                </div>
+                {% if id1%}
+                <div>Can't find here goto <a href="{%url 'aggrefert'%}">Aggregators</a>
+                </div>
+                {%else%}
+                <div>Can't find here goto <a href="{%url 'farmfert'%}">Farmers</a>
+                </div>
+                {%endif%}
+                </div>
+                    <div class="row">
+                        {%for product in products%}
+                        <div class="col-lg-3 mb-4">
+                            <div class="card  shadow">
+                                <div class="card-body">
+                                    {%if product.image%}
+                                    <img src="{{product.image.url}}" width="185" height="200">
+                                    {%endif%}
+                                    <h6 class="card-title pt-2">{{product.name}}</h6>
+                                    <div class="d-flex justify-content-around ">
+                                    <div class="small pt-2"><span class="bolder">₹</span>{{product.price}}/KG</div>
+
+                                    <div class="small"><a href="{% url 'detailfert' product.id%}" class="btn btn-primary buy-btn">Go to</a></div>
+                                    {% comment %} <div class="small"><button>Lease</button></div> {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {%endfor%}
+                        {% comment %} <div class="col-lg-3 mb-4">
+                            <div class="card  shadow">
+                                <div class="card-body">
+                                    <img src="{%static 'img/fertilizer1.jpg'%}" width="185" height="200">
+                                    <h6 class="card-title pt-2">Product 1</h6>
+                                    <div class="d-flex justify-content-around ">
+                                    <div class="small pt-2"><span class="bolder">₹</span>100/KG</div>
+
+                                    <div class="small"><button class="btn btn-primary buy-btn">Go to</button></div>
+                                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  <div class="col-lg-3 mb-4">
+                            <div class="card  shadow">
+                                <div class="card-body">
+                                    <img src="{%static 'img/fertilizer1.jpg'%}" width="185" height="200">
+                                    <h6 class="card-title pt-2">Product 1</h6>
+                                    <div class="d-flex justify-content-around ">
+                                    <div class="small pt-2"><span class="bolder">₹</span>100/KG</div>
+
+                                    <div class="small"><button class="btn btn-primary buy-btn">Go to</button></div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  <div class="col-lg-3 mb-4">
+                            <div class="card  shadow">
+                                <div class="card-body">
+                                    <img src="{%static 'img/fertilizer1.jpg'%}" width="185" height="200">
+                                    <h6 class="card-title pt-2">Product 1</h6>
+                                    <div class="d-flex justify-content-around ">
+                                    <div class="small pt-2"><span class="bolder">₹</span>100/KG</div>
+
+                                    <div class="small"><button class="btn btn-primary buy-btn">Go to</button></div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  <div class="col-lg-3 mb-4">
+                            <div class="card  shadow">
+                                <div class="card-body">
+                                    <img src="{%static 'img/fertilizer1.jpg'%}" width="185" height="200">
+                                    <h6 class="card-title pt-2">Product 1</h6>
+                                    <div class="d-flex justify-content-around ">
+                                    <div class="small pt-2"><span class="bolder">₹</span>100/KG</div>
+
+                                    <div class="small"><button class="btn btn-primary buy-btn">Go to</button></div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  <div class="col-lg-3 mb-4">
+                            <div class="card  shadow">
+                                <div class="card-body">
+                                    <img src="{%static 'img/fertilizer1.jpg'%}" width="185" height="200">
+                                    <h6 class="card-title pt-2">Product 1</h6>
+                                    <div class="d-flex justify-content-around ">
+                                    <div class="small pt-2"><span class="bolder">₹</span>100/KG</div>
+
+                                    <div class="small"><a href="{% url 'detailpro' 1%}" class="btn btn-primary buy-btn">Go to</a></div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  <div class="col-lg-3 mb-4">
+                            <div class="card  shadow">
+                                <div class="card-body">
+                                    <img src="{%static 'img/fertilizer1.jpg'%}" width="185" height="200">
+                                    <h6 class="card-title pt-2">Product 1</h6>
+                                    <div class="d-flex justify-content-around ">
+                                    <div class="small pt-2"><span class="bolder">₹</span>100/KG</div>
+
+                                    <div class="small"><button class="btn btn-primary buy-btn">Go to</button></div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  <div class="col-lg-3 mb-4">
+                            <div class="card  shadow">
+                                <div class="card-body">
+                                    <img src="{%static 'img/fertilizer1.jpg'%}" width="185" height="200">
+                                    <h6 class="card-title pt-2">Product 1</h6>
+                                    <div class="d-flex justify-content-around ">
+                                    <div class="small pt-2"><span class="bolder">₹</span>100/KG</div>
+
+                                    <div class="small"><button class="btn btn-primary buy-btn">Go to</button></div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div> {% endcomment %}
+
+                    </div>
+                 
+                </div>
+                <!-- /.container-fluid -->
+
+    {%include "footer.html"%}        
+    <script>
+        $("#aggrebtn").click(function(){
+            $(".aggregators").prop("hidden",false)
+            $(".farmers").prop("hidden",true)
+$("#aggrebtn").addClass("activebtn")
+$("#farmbtn").removeClass("activebtn")
+
+$("#farmbtn").css("background-color","#2e59d9")
+$(".activebtn").css("background-color","green");
+           // alert();
+        })
+
+        $("#farmbtn").click(function(){
+           // alert();
+            $(".farmers").prop("hidden",false)
+            $(".aggregators").prop("hidden",true)
+            $("#aggrebtn").removeClass("activebtn")
+            $("#farmbtn").addClass("activebtn")
+            $("#aggrebtn").css("background-color","#2e59d9")
+
+            $(".activebtn").css("background-color","green");
+
+        })
+    </script>
+{%endblock%}
+    {% comment %} <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript--> {% endcomment %}
+   

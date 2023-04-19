@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+{%extends "base.html"%}
+{% load static %}
+{%block content%}
+{%include "nav.html"%}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                <div class="d-flex justify-content-around" >
+                    {%if id%}
+                    <div class="text-xl font-weight-bold text-primary text-uppercase mb-1">
+                        Pesticides Aggregators</div>
+                        {%else%}
+                        <div class="text-xl font-weight-bold text-primary text-uppercase mb-1">
+                            Pesticides Farmers</div>
+                            {%endif%}
+                        <div>
+                   
+                </div>
+                {% if id1%}
+                <div>Can't find here goto <a href="{%url 'aggrpesti'%}">Aggregators</a>
+                </div>
+                {%else%}
+                <div>Can't find here goto <a href="{%url 'farmpesti'%}">Farmers</a>
+                </div>
+                {%endif%}
+                </div>
+                    <div class="row">
+                        {%for product in products%}
+                        <div class="col-lg-3 mb-4">
+                            <div class="card  shadow">
+                                <div class="card-body">
+                                    {%if product.image%}
+                                    <img src="{{product.image.url}}" width="185" height="200">
+                                    {%endif%}
+                                    <h6 class="card-title pt-2">{{product.name}}</h6>
+                                    <div class="d-flex justify-content-around ">
+                                    <div class="small pt-2"><span class="bolder">₹</span>{{product.price}}/Piece</div>
+
+                                    <div class="small"><a href="{% url 'detailpest' product.id%}" class="btn btn-primary buy-btn">Go to</a></div>
+                                    {% comment %} <div class="small"><button>Lease</button></div> {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {%endfor%}
+                        {% comment %} <div class="col-lg-6 mb-4">
+                            <div class="card bg-success text-white shadow">
+                                <div class="card-body">
+                                    Success
+                                    <div class="text-white-50 small">#1cc88a</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                            <div class="card bg-info text-white shadow">
+                                <div class="card-body">
+                                    Info
+                                    <div class="text-white-50 small">#36b9cc</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                            <div class="card bg-warning text-white shadow">
+                                <div class="card-body">
+                                    Warning
+                                    <div class="text-white-50 small">#f6c23e</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                            <div class="card bg-danger text-white shadow">
+                                <div class="card-body">
+                                    Danger
+                                    <div class="text-white-50 small">#e74a3b</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                            <div class="card bg-secondary text-white shadow">
+                                <div class="card-body">
+                                    Secondary
+                                    <div class="text-white-50 small">#858796</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                            <div class="card bg-light text-black shadow">
+                                <div class="card-body">
+                                    Light
+                                    <div class="text-black-50 small">#f8f9fc</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                            <div class="card bg-dark text-white shadow">
+                                <div class="card-body">
+                                    Dark
+                                    <div class="text-white-50 small">#5a5c69</div>
+                                </div>
+                            </div>
+                        </div> {% endcomment %}
+                    </div>
+                 
+                </div>
+                <!-- /.container-fluid -->
+
+    {%include "footer.html"%}        
+    <script>
+        $("#aggrebtn").click(function(){
+            $(".aggregators").prop("hidden",false)
+            $(".farmers").prop("hidden",true)
+$("#aggrebtn").addClass("activebtn")
+$("#farmbtn").removeClass("activebtn")
+
+$("#farmbtn").css("background-color","#2e59d9")
+$(".activebtn").css("background-color","green");
+           // alert();
+        })
+
+        $("#farmbtn").click(function(){
+           // alert();
+            $(".farmers").prop("hidden",false)
+            $(".aggregators").prop("hidden",true)
+            $("#aggrebtn").removeClass("activebtn")
+            $("#farmbtn").addClass("activebtn")
+            $("#aggrebtn").css("background-color","#2e59d9")
+
+            $(".activebtn").css("background-color","green");
+
+        })
+    </script>
+{%endblock%}
+    {% comment %} <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript--> {% endcomment %}
+   

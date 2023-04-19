@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+{%extends "base.html"%}
+{% load static %}
+{%block content%}
+
+{%include "nav.html"%}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+<!-- Page Heading -->
+{% comment %} <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Cards</h1>
+</div> {% endcomment %}
+
+
+<div class="row">
+
+    <div class="col-lg-6">
+
+        <!-- Default Card Example -->
+        <div class="card mb-4">
+            <div class="card-header">
+               Product 
+            </div>
+            <div class="card-body">
+                <img src="{{product.image.url}}" width="450" height="300">
+{% comment %} <div class="d-flex justify-content-around mt-3">
+    <div>
+        <button class="btn btn-primary buy-btn">Buy</button>
+    </div>
+    <div>
+    <button class="btn btn-primary buy-btn">Lease</button>
+
+    </div>
+</div> {% endcomment %}
+                {% comment %} This card uses Bootstrap's default styling with no utility classes added. Global
+                styles are the only things modifying the look and feel of this default card example. {% endcomment %}
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="col-lg-6">
+        <!-- Default Card Example -->
+
+        <div class="card mb-4">
+            <div class="card-header">
+                {{product.name}}
+            </div>
+            <div class="card-body">
+                {{product.descr}}
+                {%if id1%}
+                <div><h5 class="mt-2">₹ {{product.price}}/kg</h5></div>
+                {%endif%}
+                {%if id2%}
+                <div><h5 class="mt-2">₹ Buy: {{product.price}}</h5></div>
+                <div><h5 class="mt-2">₹ Lease: {{product.leaseprice}}/hr</h5></div>
+                {%endif%}
+                {%if id3%}
+                <div><h5 class="mt-2">₹ {{product.price}}/Piece</h5></div>
+                {%endif%}
+            {% comment %} <div class="d-flex justify-content-start mt-2 pl-3">
+            <div class="custom-control custom-radio pr-2">
+                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                <label class="custom-control-label" for="customRadio1">Buy</label>
+              </div>
+              <div class="custom-control custom-radio ">
+                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                <label class="custom-control-label" for="customRadio2">Lease</label>
+              </div>
+            </div>
+            </div> {% endcomment %}
+            <div class="container">
+                
+                <input type="button" onclick="decrementValue()" value="-" />
+                <input type="text" class="quantity" name="quantity" value="1" maxlength="4" max="100" size="1" id="number" />
+                {% comment %} <input type="text" name="" value="KG" maxlength="2" max="100" size="1" id="number" disabled > {% endcomment %}
+
+                <input type="button" onclick="incrementValue()" value="+" />
+                </div>
+                <div class="d-flex justify-content-end">
+                <div class="small"><button class="btn btn-primary " id="pay-btn" onclick="Checkout()">Checkout</button></div>
+
+                </div>
+        </div>
+    </div>
+                </div>
+                <!-- /.container-fluid -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-around" >
+                        <div class="text-xl font-weight-bold text-primary text-uppercase mb-1">
+                            Other Products</div>
+                            <div>
+                        
+                    </div>
+                    </div>
+                        <div class="row">
+                            {%for product in products%}
+                            <div class="col-lg-3 mb-4">
+                                <div class="card  shadow">
+                                    <div class="card-body">
+                                        <img src="{{product.image.url}}" width="185" height="200">
+                                        <h6 class="card-title pt-2">{{product.name}}</h6>
+                                    {%if id1%}
+                                    <div class="d-flex justify-content-around ">
+                                        <div class="small pt-2"><span class="bolder">₹</span>{{product.price}}/KG</div>
+                                        {%endif%}
+                                        {%if id2%}
+                                        <div class="d-flex justify-content-around ">
+                                            <div>
+                                            <div class="small pt-2"><span class="bolder">₹ Buy: </span>{{product.price}}</div>
+                                            <div class="small pt-2"><span class="bolder">₹ Lease: </span>{{product.leaseprice}}/hr</div>
+                                            </div>
+                                            {%endif%} 
+                                            {%if id3%}
+                                            <div class="d-flex justify-content-around ">
+                                            <div class="small pt-2"><span class="bolder">₹</span>{{product.price}}/Piece</div>
+                                               
+
+                                                {%endif%}
+                                    {%if id1%}
+                                        <div class="small"><a href="{% url 'detailfert' product.id%}" class="btn btn-primary buy-btn">Go to</a></div>
+                                        {%endif%}
+                                        {%if id2%}
+                                        <div class="small"><a href="{% url 'detailmach' product.id%}" class="btn btn-primary buy-btn">Go to</a></div>
+                                        {%endif%}
+                                        {%if id3%}
+                                        <div class="small"><a href="{% url 'detailpest' product.id%}" class="btn btn-primary buy-btn">Go to</a></div>
+                                        {%endif%}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {%endfor%}
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+    {%include "footer.html"%}        
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == "error"%}
+    <script>
+      $(document).ready(function(){
+       // swal('{{message}}');
+    
+        swal({
+        title:'{{message}}',
+        //text: "You clicked the button!",
+        icon:"warning",
+        button:"ok"
+    });
+      });
+    </script>
+    {%else%}
+    <script>
+      $(document).ready(function(){
+       // swal('{{message}}');
+    
+        swal({
+        title:'{{message}}',
+        //text: "You clicked the button!",
+        icon:"success",
+        button:"ok"
+    });
+      });
+    </script>
+    {% endif %}
+    {%endfor%}
+    {% endif %} 
+    <script type="text/javascript">
+        function incrementValue()
+        {
+            var value = parseInt(document.getElementById('number').value, 10);
+            value = isNaN(value) ? 0 : value;
+            if(value<10){
+                value++;
+                    document.getElementById('number').value = value;
+            }
+        }
+        function decrementValue()
+        {
+            var value = parseInt(document.getElementById('number').value, 10);
+            value = isNaN(value) ? 0 : value;
+            if(value>1){
+                value--;
+                    document.getElementById('number').value = value;
+            }
+        
+        }
+        </script>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script>
+            function Checkout(){
+                //  $("#delete").on("click", function(e){ 
+                       var quantity=$(".quantity").val()
+                            $.ajax({
+                                url: "{% url 'payment' %}",
+                                type: "POST",
+                                dataType: "json",
+                                data: {
+                                    'product':"{{product.name}}",
+                                    'amount':'{{product.price}}',
+                                    'quantity':quantity,
+                                    'csrfmiddlewaretoken':'{{ csrf_token }}',
+                                },
+                                success: function(resp){
+                                  console.log(resp)
+                                  var options = {
+               
+                                    // Enter the Key ID generated from the Dashboard
+                                    key: resp["razorpay_merchant_key"],
+                                     
+                                    // Amount is in currency subunits.
+                                    // Default currency is INR. Hence,
+                                    // 50000 refers to 50000 paise
+                                    amount: resp["razorpay_amount"],
+                                    currency: "INR",
+                                     
+                                    // Your/store name.
+                                    name: "E-agri",
+                                     
+                                    // Pass the `id` obtained in the response of Step 1
+                                    order_id: resp["razorpay_order_id"],
+                                    callback_url: resp["callback_url"],
+                                  };
+                                  var rzp1 = new Razorpay(options);
+                            rzp1.open();
+                                }
+                            });
+                
+                        return false;
+                }
+        </script>
+
+{%endblock%}
+    

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{%extends "base.html"%}
+{% load static %}
+{%block content%}
+
+{%include "nav.html"%}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+<div class="row mb-3">
+    <div class="col-6">
+        <div class="d-flex">
+     
+        <div>
+            <h5> 
+            Profile ID: 
+            </h5>
+        </div>
+        
+        <div>
+            <h5> 
+          {%if request.user.farmerid%}{{request.user.farmerid}}{%else%}{{request.user.aggreid}}{%endif%}
+            </h5>
+        </div>
+    </div>
+    </div>
+    <div class="col-6">
+        <button type="button" class="btn btn-primary" id="edit">Edit</button>
+
+    </div>
+</div>
+                    <form method="post" id="proform" enctype="multipart/form-data">
+                        {%csrf_token%}
+                        <div class="form-group row">
+                          <div class="form-group col-lg-6">
+                            <label for="product">Full Name</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{request.user.full_name}}" placeholder="Name" required readonly>
+                          </div>
+                          <div class="form-group col-lg-6">
+                            <label for="product">Email</label>
+                            <input type="email" class="form-control" id="email" value="{{request.user.email}}" name="email" placeholder="Email" required readonly>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group col-lg-6">
+                              <label for="product">Phone</label>
+                              <input type="number" class="form-control" id="phone" value="{{request.user.phone_no}}" name="phone" placeholder="Phone" required readonly>
+                            </div>
+                            <div class="form-group col-lg-6"> 
+                                <label for="product">Address</label>
+                                  <textarea type="number" class="form-control" id="address" name="address"  placeholder="Address" required readonly>{{request.user.address}}</textarea>
+                              </div>
+                          </div>
+                        
+                          <div class="form-group row">
+                            <div class="form-group col-lg-6">
+                              <label for="product">Pincode</label>
+                              <input type="number" class="form-control" id="pincode" name="pincode" value="{{request.user.pincode}}" placeholder="Pincode" required readonly>
+                            </div>
+                        <div class="form-group col-lg-6 ">
+                            {% comment %} <label for="product">Pincode</label> {% endcomment %}
+                            {% comment %} s {% endcomment %}
+
+                        <button type="submit" id="submit" class="form-control btn btn-primary mt-4" disabled>Submit</button>
+
+                        </div>
+                          </div>
+                    
+                      </form>
+                    </div>
+                    <!-- /.container-fluid -->
+    {%include "footer.html"%}        
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == "error"%}
+    <script>
+      $(document).ready(function(){
+       // swal('{{message}}');
+    
+        swal({
+        title:'{{message}}',
+        //text: "You clicked the button!",
+        icon:"warning",
+        button:"ok"
+    });
+      });
+    </script>
+    {%else%}
+    <script>
+      $(document).ready(function(){
+       // swal('{{message}}');
+    
+        swal({
+        title:'{{message}}',
+        //text: "You clicked the button!",
+        icon:"success",
+        button:"ok"
+    });
+      });
+    </script>
+    {% endif %}
+    {%endfor%}
+    {% endif %} 
+<script>
+$("#edit").click(function(){
+    $("#proform input").attr("readonly", false)
+    $("#proform textarea").attr("readonly", false)
+$("#submit").prop("disabled",false)
+})
+</script>
+{%endblock%}
+
+   
+
+   

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+{%extends "base.html"%}
+{% load static %}
+
+
+{%block content%}
+{%include "nav.html"%}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <div class="d-sm-flex mb-4">
+                        <div>
+                        <h1 class="h3 mb-0 text-gray-800 pr-3"><button id="aggrebtn" class="btn btn-primary">Aggregators</button></h1>
+                        </div>
+                        <div>
+                        <h1 class="h3 mb-0 text-gray-800 pr-3"><button id="farmbtn" class="btn btn-primary">Farmer Eco</button></h1>
+                        </div>
+                        {% comment %} <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> {% endcomment %}
+                    </div>
+                 
+                    <!-- Content Row -->
+                    <div class="row aggregators " hidden>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <a href="{% url 'aggrefert'%}"><div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Fertilizer Aggregators</div></a>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="{% url 'aggrefert'%}">Click here</a></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <img class="" src="{%static 'img/fertilizer.png'%}" width="30" height="30">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <a href="{% url 'aggrmachine' %}"><div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Machinary Aggregators</div></a>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="{% url 'aggrmachine' %}">Click here</a></div>
+
+                                        </div>
+                                        <div class="col-auto">
+                                            <img class="" src="{%static 'img/cogwheel.png'%}" width="30" height="30">
+
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                          <a href="{% url 'aggrpesti'%}">  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Pesticides Aggregators</div></a>
+                                           
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="{% url 'aggrpesti'%}">Click here</a></div>
+                                        
+                                        </div>
+                                        <div class="col-auto">
+                                            <img class="" src="{%static 'img/chemical.png'%}" width="30" height="30">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row farmers" hidden>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <a href=""><div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Fertilizer Farmers</div></a>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="">Click here</a></div>
+                                           
+                                        </div>
+                                        <div class="col-auto">
+                                            <img class="" src="{%static 'img/fertilizer.png'%}" width="30" height="30">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <a href=""><div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Machinary Holders</div></a>
+                                            
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="">Click here</a></div>
+
+                                        </div>
+                                        <div class="col-auto">
+                                            <img class="" src="{%static 'img/cogwheel.png'%}" width="30" height="30">
+
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                          <a href="">  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Pesticides Holders</div></a>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="">Click here</a></div>
+
+                                        </div>
+                                        <div class="col-auto">
+                                            <img class="" src="{%static 'img/chemical.png'%}" width="30" height="30">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {% comment %} <marquee width="60%" direction="up" height="100px">
+                        This is a sample scrolling text that has scrolls in the upper direction.
+                        </marquee> {% endcomment %}
+
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Experts</h1>
+                        {% comment %} <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> {% endcomment %}
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <a href=""><div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Fertilizer Experts</div></a>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a class="btn btn-primary" data-toggle="modal" data-target="#fmodal">Click here</a></div>
+                                           
+                                        </div>
+                                        <div class="col-auto">
+                                            <img class="" src="{%static 'img/fertilizer.png'%}" width="30" height="30">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                           <a href=""><div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Machinary Experts</div></a>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a class="btn btn-primary" data-toggle="modal" data-target="#fmodal">Click here</a></div>
+                                          
+                                        </div>
+                                        <div class="col-auto">
+                                            <img class="" src="{%static 'img/cogwheel.png'%}" width="30" height="30">
+
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <a href=""><div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Pesticides Experts</div></a>
+                                            
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a class="btn btn-primary" data-toggle="modal" data-target="#fmodal">Click here</a></div>
+
+                                        </div>
+                                        <div class="col-auto">
+                                            <img class="" src="{%static 'img/chemical.png'%}" width="30" height="30">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Market</h1>
+                        {% comment %} <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> {% endcomment %}
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                           <a href=""> <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Sell your Produce</div></a>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="{% url 'sell' %}">Click here</a></div>
+
+                                        </div>
+                                        <div class="col-auto">
+                                            <img class="" src="{%static 'img/fertilizer.png'%}" width="30" height="30">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        {% comment %} <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Machinary Experts</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <img class="" src="{%static 'img/cogwheel.png'%}" width="30" height="30">
+
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Pesticides Experts</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <img class="" src="{%static 'img/chemical.png'%}" width="30" height="30">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> {% endcomment %}
+
+                    </div>
+                 
+                </div>
+                <!-- /.container-fluid -->
+                <div class="modal fade" id="fmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Ask your Query here</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post">
+                                {%csrf_token%}
+                             
+                                {%if user.is_authenticated == False%}
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name"  placeholder="Name" required>
+                                    {% comment %} <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> {% endcomment %}
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="exampleInputEmail1">Emaik</label>
+                                    <input type="email" class="form-control" id="email" name="email"  placeholder="Email" required>
+                                    {% comment %} <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> {% endcomment %}
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="exampleInputEmail1">Phone</label>
+                                    <input type="number" class="form-control" id="phone" name="phone"  placeholder="Phone" required>
+                                    {% comment %} <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> {% endcomment %}
+                                  </div>
+                        {%endif%}
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Subject</label>
+                                  <input type="text" class="form-control" id="subject" name="subject"  placeholder="Subject" required>
+                                  {% comment %} <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> {% endcomment %}
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputPassword1">Query</label>
+                                  <textarea  type="text" class="form-control" id="query" name="query" placeholder="Write your query here..." required></textarea>
+                                </div>
+                                {% comment %} <div class="form-check">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                </div> {% endcomment %}
+                                {% comment %} <button type="submit" class="btn btn-primary">Submit</button> {% endcomment %}
+                          
+                        </div>
+                        <div class="modal-footer">
+                          {% comment %} <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> {% endcomment %}
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                      </div>
+                    </div>
+                  </div>
+    {%include "footer.html"%}       
+    {% if messages %}
+{% for message in messages %}
+{% if message.tags == "error"%}
+<script>
+  $(document).ready(function(){
+   // swal('{{message}}');
+
+    swal({
+	title:'{{message}}',
+	//text: "You clicked the button!",
+	icon:"warning",
+	button:"ok"
+});
+  });
+</script>
+{%else%}
+<script>
+  $(document).ready(function(){
+   // swal('{{message}}');
+
+    swal({
+	title:'{{message}}',
+	//text: "You clicked the button!",
+	icon:"success",
+	button:"ok"
+});
+  });
+</script>
+{% endif %}
+{%endfor%}
+{% endif %} 
+    <script>
+        $("#aggrebtn").click(function(){
+            $(".aggregators").prop("hidden",false)
+            $(".farmers").prop("hidden",true)
+$("#aggrebtn").addClass("activebtn")
+$("#farmbtn").removeClass("activebtn")
+
+$("#farmbtn").css("background-color","#487e35")
+$(".activebtn").css("background-color","#bda600");
+           // alert();
+        })
+
+        $("#farmbtn").click(function(){
+           // alert();
+            $(".farmers").prop("hidden",false)
+            $(".aggregators").prop("hidden",true)
+            $("#aggrebtn").removeClass("activebtn")
+            $("#farmbtn").addClass("activebtn")
+            $("#aggrebtn").css("background-color","#487e35")
+
+            $(".activebtn").css("background-color","#bda600");
+
+        })
+    </script>
+{%endblock%}
+
+   

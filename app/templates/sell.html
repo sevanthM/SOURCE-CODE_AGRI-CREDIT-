@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+{%extends "base.html"%}
+{% load static %}
+{%block content%}
+
+{%include "nav.html"%}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <form method="post" enctype="multipart/form-data">
+                        {%csrf_token%}
+                          <div class="form-group ">
+                            <label for="product">Product name</label>
+                            <input type="text" class="form-control" id="product" name="name" placeholder="Product Name" required>
+                          </div>
+                          <div class="form-group ">
+                            <label for="description">Description</label>
+                            <textarea type="text" class="form-control" id="description" name="description" placeholder="Product Description" required></textarea>
+                          </div>
+                     
+                        <div class="form-group">
+                          <label for="file">Product Image</label>
+                          <input type="file" class="form-control" name="image" id="file" placeholder="" required>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4 mb-3 mb-sm-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="category" id="fertilizer" value="fertilizer" checked required>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                     Fertilizer
+                                    </label>
+                                  </div>
+                                  
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="category" id="machinary" value="machinary" checked required>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                      machinary
+                                    </label>
+                                  </div>
+                                  
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="category" id="pesticide" value="pesticides" checked required>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                      Pesticide
+                                    </label>
+                                  </div>
+                                  
+                            </div>
+                        </div>
+                        <div class="form-row">
+                        
+                          <div class="form-group col-md-6">
+                            <label for="inputCity">Price in ₹</label>
+                            <input type="number" class="form-control" name="price" id="inputCity" required>
+                          </div>
+                          
+                          <div class="form-group col-md-6">
+                            <label for="inputZip">Lease Price in ₹ per hour</label>
+                            <input type="number" class="form-control" name="lprice" id="lease" disabled>
+                          </div>
+                        </div>
+                        {% comment %} <div class="form-group">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                            <label class="form-check-label" for="gridCheck">
+                              Check me out
+                            </label>
+                          </div>
+                        </div> {% endcomment %}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                    </div>
+                    <!-- /.container-fluid -->
+    {%include "footer.html"%}        
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == "error"%}
+    <script>
+      $(document).ready(function(){
+       // swal('{{message}}');
+    
+        swal({
+        title:'{{message}}',
+        //text: "You clicked the button!",
+        icon:"warning",
+        button:"ok"
+    });
+      });
+    </script>
+    {%else%}
+    <script>
+      $(document).ready(function(){
+       // swal('{{message}}');
+    
+        swal({
+        title:'{{message}}',
+        //text: "You clicked the button!",
+        icon:"success",
+        button:"ok"
+    });
+      });
+    </script>
+    {% endif %}
+    {%endfor%}
+    {% endif %} 
+<script>
+    $(document).ready(function() {
+        $('#machinary').click(function() {
+       $("#lease").prop("disabled",false)
+        });
+
+        $('#fertilizer').click(function() {
+            $("#lease").prop("disabled",true)
+             });
+
+             $('#pesticide').click(function() {
+                $("#lease").prop("disabled",true)
+                 });
+      });
+</script>
+{%endblock%}
+
+   

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+{%extends "base.html"%}
+{% load static %}
+{%block content%}
+
+{%include "nav.html"%}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+
+<div class="row">
+    <div class="col-lg-6">
+        <!-- Default Card Example -->
+        <div class="card mb-4">
+            <div class="card-header">
+               Product 
+            </div>
+            <div class="card-body">
+                <img src="{{product.image.url}}" width="450" height="300">
+
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="col-lg-6">
+        <!-- Default Card Example -->
+
+        <div class="card mb-4">
+            <div class="card-header">
+                {{product.name}}
+            </div>
+            <div class="card-body">
+                {{product.descr}}
+            
+                <div><h5 class="mt-2">₹ Buy: {{product.price}}</h5></div>
+                <div><h5 class="mt-2">₹ Lease: {{product.leaseprice}}/hr</h5></div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="buyradio" value="buyradio" checked required>
+                            <label class="form-check-label" for="exampleRadios1">
+                             Buy
+                            </label>
+                          </div>
+                          
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="leaseradio" value="leaseradio" checked required>
+                            <label class="form-check-label" for="exampleRadios1">
+                              Lease
+                            </label>
+                          </div>
+                    </div>
+                </div>
+
+            <div class="container incdecr" hidden>
+                
+                <input type="button" onclick="decrementValue()" value="-" />
+                <input type="text" class="quantity" name="quantity" value="1" maxlength="4" max="100" size="1" id="number" />
+                <input type="text"  name="" value="hr" maxlength="2" max="100" size="1" id="number" disabled >
+
+                <input type="button" onclick="incrementValue()" value="+" />
+                </div>
+                <div class="d-flex justify-content-end">
+                <div class="small"><button class="btn btn-primary " onclick="Checkout()">Checkout</button></div>
+
+                </div>
+        </div>
+    </div>
+    
+                </div>
+                <!-- /.container-fluid -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-around" >
+                        <div class="text-xl font-weight-bold text-primary text-uppercase mb-1">
+                            Other Products</div>
+                            <div>
+                        
+                    </div>
+                    </div>
+                        <div class="row">
+                            {%for product in products%}
+                            <div class="col-lg-3 mb-4">
+                                <div class="card  shadow">
+                                    <div class="card-body">
+                                        <img src="{{product.image.url}}" width="185" height="200">
+                                        <h6 class="card-title pt-2">{{product.name}}</h6>
+                             
+                                        <div class="d-flex justify-content-around ">
+                                            <div>
+                                            <div class="small pt-2"><span class="bolder">₹ Buy: </span>{{product.price}}</div>
+                                            <div class="small pt-2"><span class="bolder">₹ Lease: </span>{{product.leaseprice}}/hr</div>
+                                            </div>
+                                      
+                               
+                                        <div class="small"><a href="{% url 'detailmach' product.id%}" class="btn btn-primary buy-btn">Go to</a></div>
+                                   
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {%endfor%}
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+    {%include "footer.html"%}        
+ 
+    <script type="text/javascript">
+        if($('#leaseradio').is(':checked')) 
+        { $(".incdecr").prop("hidden",false)}
+$("#leaseradio").click(function(){
+$(".incdecr").prop("hidden",false)
+
+})
+$("#buyradio").click(function(){
+    $(".incdecr").prop("hidden",true)
+
+
+    
+})
+
+
+        function incrementValue()
+        {
+            var value = parseInt(document.getElementById('number').value, 10);
+            value = isNaN(value) ? 0 : value;
+            if(value<10){
+                value++;
+                    document.getElementById('number').value = value;
+            }
+        }
+        function decrementValue()
+        {
+            var value = parseInt(document.getElementById('number').value, 10);
+            value = isNaN(value) ? 0 : value;
+            if(value>1){
+                value--;
+                    document.getElementById('number').value = value;
+            }
+        
+        }
+        </script>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script>
+            function Checkout(){
+                //  $("#delete").on("click", function(e){ 
+                    if($('#leaseradio').is(':checked')) {
+                    var quantity=$(".quantity").val()
+                    $.ajax({
+                        url: "{% url 'payment' %}",
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            'product':"{{product.name}}",
+                            'amount':'{{product.leaseprice}}',
+                            'quantity':quantity,
+                            'csrfmiddlewaretoken':'{{ csrf_token }}',
+                        },
+                        success: function(resp){
+                          console.log(resp)
+                          var options = {
+       
+                            // Enter the Key ID generated from the Dashboard
+                            key: resp["razorpay_merchant_key"],
+                             
+                            // Amount is in currency subunits.
+                            // Default currency is INR. Hence,
+                            // 50000 refers to 50000 paise
+                            amount: resp["razorpay_amount"],
+                            currency: "INR",
+                             
+                            // Your/store name.
+                            name: "E-agri",
+                             
+                            // Pass the `id` obtained in the response of Step 1
+                            order_id: resp["razorpay_order_id"],
+                            callback_url: resp["callback_url"],
+                          };
+                          var rzp1 = new Razorpay(options);
+                    rzp1.open();
+                        }
+                    });
+    }else{
+        var quantity=1
+        $.ajax({
+            url: "{% url 'payment' %}",
+            type: "POST",
+            dataType: "json",
+            data: {
+                'product':"{{product.name}}",
+                'amount':'{{product.price}}',
+                'quantity':quantity,
+                'csrfmiddlewaretoken':'{{ csrf_token }}',
+            },
+            success: function(resp){
+              console.log(resp)
+              var options = {
+
+                // Enter the Key ID generated from the Dashboard
+                key: resp["razorpay_merchant_key"],
+                 
+                // Amount is in currency subunits.
+                // Default currency is INR. Hence,
+                // 50000 refers to 50000 paise
+                amount: resp["razorpay_amount"],
+                currency: "INR",
+                 
+                // Your/store name.
+                name: "E-agri",
+                 
+                // Pass the `id` obtained in the response of Step 1
+                order_id: resp["razorpay_order_id"],
+                callback_url: resp["callback_url"],
+              };
+              var rzp1 = new Razorpay(options);
+        rzp1.open();
+            }
+        });
+    } 
+                        return false;
+                }
+        </script>
+{%endblock%}
+
+   
