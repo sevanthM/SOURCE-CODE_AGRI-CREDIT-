@@ -3,6 +3,7 @@
 {% load static %}
 
 
+
 {%block content%}
 {%include "nav.html"%}
                 <!-- Begin Page Content -->
@@ -37,6 +38,7 @@
                                             <td>{{product.lease}}</td>
                                             <td>{{product.category}}</td>
 
+
                                             <td>{{product.date}}</td>
                                         </tr>
                                         {%endfor%}
@@ -49,6 +51,7 @@
                 </div>
                 <!-- /.container-fluid -->
 
+
     {%include "footer.html"%}        
     {% if messages %}
     {% for message in messages %}
@@ -59,7 +62,7 @@
     
         swal({
         title:'{{message}}',
-        //text: "You clicked the button!",
+        //text: "You clicked the button!",
         icon:"warning",
         button:"ok"
     });
@@ -72,7 +75,7 @@
     
         swal({
         title:'{{message}}',
-        //text: "You clicked the button!",
+        //text: "You clicked the button!",
         icon:"success",
         button:"ok"
     });
@@ -82,3 +85,4 @@
     {%endfor%}
     {% endif %} 
 {%endblock%}
+
