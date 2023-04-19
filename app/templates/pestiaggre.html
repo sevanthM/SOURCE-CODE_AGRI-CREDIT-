@@ -36,6 +36,7 @@
                                     <div class="d-flex justify-content-around ">
                                     <div class="small pt-2"><span class="bolder">₹</span>{{product.price}}/Piece</div>
 
+
                                     <div class="small"><a href="{% url 'detailpest' product.id%}" class="btn btn-primary buy-btn">Go to</a></div>
                                     {% comment %} <div class="small"><button>Lease</button></div> {% endcomment %}
                                     </div>
@@ -104,6 +105,7 @@
                 </div>
                 <!-- /.container-fluid -->
 
+
     {%include "footer.html"%}        
     <script>
         $("#aggrebtn").click(function(){
@@ -112,10 +114,12 @@
 $("#aggrebtn").addClass("activebtn")
 $("#farmbtn").removeClass("activebtn")
 
+
 $("#farmbtn").css("background-color","#2e59d9")
 $(".activebtn").css("background-color","green");
            // alert();
         })
+
 
         $("#farmbtn").click(function(){
            // alert();
@@ -125,7 +129,9 @@ $(".activebtn").css("background-color","green");
             $("#farmbtn").addClass("activebtn")
             $("#aggrebtn").css("background-color","#2e59d9")
 
+
             $(".activebtn").css("background-color","green");
+
 
         })
     </script>
@@ -133,6 +139,7 @@ $(".activebtn").css("background-color","green");
     {% comment %} <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -153,6 +160,8 @@ $(".activebtn").css("background-color","green");
             </div>
         </div>
     </div>
+
+
 
     <!-- Bootstrap core JavaScript--> {% endcomment %}
    
