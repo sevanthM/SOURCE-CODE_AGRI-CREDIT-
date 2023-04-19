@@ -1,0 +1,17 @@
+.login-logo img{
+    width:100px!important;
+    height: 100!important;
+}
+#jazzy-sidebar{
+    background-color: #424cc5!important;
+}
+.btn-success{
+    background-color: #424cc5!important;
+    border-color: #424cc5!important;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #22c6a3;
+    border-color: #22c6a3;
+    box-shadow: none;
+}
